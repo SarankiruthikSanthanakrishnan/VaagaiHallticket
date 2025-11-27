@@ -1,0 +1,7 @@
+@Endpoint = "http://localhost:3100/api/auth"
+
+###
+GET {{Endpoint}}/profile
+
+
+
