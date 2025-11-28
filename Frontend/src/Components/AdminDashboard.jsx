@@ -22,7 +22,6 @@ function AdminDashboard() {
       })
       .then(res => {
         setStudents(res.data);
-        console.log('Students loaded:', res.data);
       })
       .catch(err => {
         console.error(err);
