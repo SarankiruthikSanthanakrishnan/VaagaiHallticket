@@ -11,6 +11,7 @@ app.use(
       'http://localhost:5173',
       'https://vaagaihallticket-frontend.onrender.com',
     ],
+
     credentials: true,
   })
 );
