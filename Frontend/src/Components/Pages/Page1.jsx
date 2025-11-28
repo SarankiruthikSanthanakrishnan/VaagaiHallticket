@@ -30,7 +30,7 @@ const Page1 = ({ user }) => {
               <div className="row w-100">
                 <div className="col-6">
                   <img
-                    src="/vts logo.png"
+                    src="vts logo.png"
                     alt="Logo"
                     className="w-50 img-fluid"
                   />
