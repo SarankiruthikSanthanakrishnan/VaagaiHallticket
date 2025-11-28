@@ -2,18 +2,33 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function AdminDashboard() {
+  const formatDOB = dob => {
+    if (!dob) return ''; // null or empty protection
+    const d = new Date(dob);
+    if (isNaN(d)) return ''; // invalid date protection
+
+    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const year = d.getFullYear();
+    return `${day}-${month}-${year}`;
+  };
   const API = import.meta.env.VITE_API_URL;
   const [students, setStudents] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`${API}api/auth/admin/students`, {
+      .get(`${API}/api/auth/admin/students`, {
         withCredentials: true,
       })
-      .then(res => setStudents(res.data))
-      .then(res => console.log(res.data))
-      .catch(() => alert('Not authorized!'));
-  }, []);
+      .then(res => {
+        setStudents(res.data);
+        console.log('Students loaded:', res.data);
+      })
+      .catch(err => {
+        console.error(err);
+        alert('Not authorized!');
+      });
+  }, [API]);
 
   return (
     <div className="container mt-4">
@@ -45,7 +60,7 @@ function AdminDashboard() {
                   <td>{stu.register_number}</td>
                   <td>{stu.name_tamil}</td>
                   <td>{stu.name_english}</td>
-                  <td>{stu.dob}</td>
+                  <td>{formatDOB(stu.dob)}</td>
                   <td>{stu.phone_no}</td>
                   <td>
                     {stu.course_code} - {stu.course_name}
