@@ -2,6 +2,17 @@ import React from 'react';
 import '../../A4.css';
 
 const Page4 = ({ user }) => {
+  const formatDOB = dob => {
+    if (!dob) return ''; // null or empty protection
+    const d = new Date(dob);
+    if (isNaN(d)) return ''; // invalid date protection
+
+    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const year = d.getFullYear();
+    return `${day}-${month}-${year}`;
+  };
+
   return (
     <div id="page-4" className="page">
       <div className="card" id="main">
@@ -89,12 +100,7 @@ const Page4 = ({ user }) => {
 
                         <tr>
                           <td>5. பிறந்த தேதி</td>
-                          <td>:{' '} {new Date(user.dob)
-                        .toISOString()
-                        .split('T')[0]
-                        .split('-')
-                        .reverse()
-                        .join('-')}</td>
+                          <td>: {formatDOB(user.dob)}</td>
                         </tr>
 
                         <tr>

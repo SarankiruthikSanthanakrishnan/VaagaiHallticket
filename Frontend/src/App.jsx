@@ -1,9 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
 import Login from './Components/Login';
-import Hallticket from './Components/hallticket';
+
 import ProtectedRoute from '../utils/ProtectedRoutes';
 import AdminLogin from './Components/AdminLogin';
 import AdminDashboard from './Components/AdminDashboard';
+import Hallticket from './Components/Hallticket';
 
 function App() {
   return (

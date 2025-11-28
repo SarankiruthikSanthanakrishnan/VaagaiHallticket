@@ -3,31 +3,32 @@ import { createContext, useState, useContext, useEffect } from 'react';
 
 export const AuthContext = createContext(null);
 
+const API = import.meta.env.VITE_API_URL;
+
+axios.defaults.withCredentials = true;
+
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
-  axios.defaults.withCredentials = true;
 
-  // -------- GET LOGGED-IN USER DETAILS --------
+  // -------- GET LOGGED USER --------
   const fetchUser = async () => {
     try {
-      const res = await axios.get('http://localhost:3100/api/auth/profile');
-
-      setUser(res.data); // contains full student details
+      const res = await axios.get(`${API}/api/auth/profile`);
+      console.log('User', res.data);
+      console.log('Using API:', API);
     } catch (err) {
       setUser(null);
     }
   };
 
-  // --------------- LOGIN -------------------
+  // -------- LOGIN --------
   const login = async (regno, dob) => {
     try {
       setLoading(true);
 
-      const res = await axios.post('http://localhost:3100/api/auth/login', {
-        regno,
-        dob,
-      });
+      await axios.post(`${API}/api/auth/login`, { regno, dob });
+
       await fetchUser();
       return true;
     } catch (err) {
@@ -37,9 +38,9 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  // --------------- LOGOUT -------------------
+  // -------- LOGOUT --------
   const logout = async () => {
-    await axios.get('http://localhost:3100/api/auth/logout');
+    await axios.get(`${API}/api/auth/logout`);
     setUser(null);
   };
 
@@ -54,7 +55,6 @@ const AuthProvider = ({ children }) => {
   );
 };
 
-// export custom hook
 export const useAuth = () => useContext(AuthContext);
 
 export default AuthProvider;
