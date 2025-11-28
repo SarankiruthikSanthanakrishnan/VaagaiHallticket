@@ -7,7 +7,10 @@ const authRoutes = require('./authRoutes/authRoutes');
 
 app.use(
   cors({
-    origin: 'http://localhost:5173',
+    origin: [
+      'http://localhost:5173',
+      'https://vaagaihallticket-frontend.onrender.com',
+    ],
     credentials: true,
   })
 );
