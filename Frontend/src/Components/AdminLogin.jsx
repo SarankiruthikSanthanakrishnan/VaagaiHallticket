@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function AdminLogin() {
+  const API = import.meta.env.VITE_API_URL;
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -26,7 +27,7 @@ function AdminLogin() {
 
     try {
       await axios.post(
-        'http://localhost:3100/api/auth/admin/login',
+        `${API}/api/auth/admin/login`,
         { username, password },
         { withCredentials: true }
       );

@@ -35,7 +35,7 @@ function Login() {
 
     if (ok) {
       showAlert('உள்நுழைவு வெற்றிகரமாக முடிந்தது!', 'success');
-      setTimeout(() => navigate('/hallticket'), 1000);
+      navigate('/hallticket');
     } else {
       showAlert(
         'உள்நுழைவு தோல்வி! பதிவு எண் அல்லது பிறந்த தேதி தவறு.',

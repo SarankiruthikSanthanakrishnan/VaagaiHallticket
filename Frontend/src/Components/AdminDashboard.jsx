@@ -2,14 +2,16 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function AdminDashboard() {
+  const API = import.meta.env.VITE_API_URL;
   const [students, setStudents] = useState([]);
 
   useEffect(() => {
     axios
-      .get('http://localhost:3100/api/auth/admin/students', {
+      .get(`${API}api/auth/admin/students`, {
         withCredentials: true,
       })
       .then(res => setStudents(res.data))
+      .then(res => console.log(res.data))
       .catch(() => alert('Not authorized!'));
   }, []);
 

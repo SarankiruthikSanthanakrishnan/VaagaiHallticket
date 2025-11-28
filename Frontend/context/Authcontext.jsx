@@ -11,24 +11,19 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // -------- GET LOGGED USER --------
   const fetchUser = async () => {
     try {
       const res = await axios.get(`${API}/api/auth/profile`);
-      console.log('User', res.data);
-      console.log('Using API:', API);
+      setUser(res.data); // FIXED
     } catch (err) {
       setUser(null);
     }
   };
 
-  // -------- LOGIN --------
   const login = async (regno, dob) => {
     try {
       setLoading(true);
-
       await axios.post(`${API}/api/auth/login`, { regno, dob });
-
       await fetchUser();
       return true;
     } catch (err) {
@@ -38,7 +33,6 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  // -------- LOGOUT --------
   const logout = async () => {
     await axios.get(`${API}/api/auth/logout`);
     setUser(null);
@@ -56,5 +50,4 @@ const AuthProvider = ({ children }) => {
 };
 
 export const useAuth = () => useContext(AuthContext);
-
 export default AuthProvider;
