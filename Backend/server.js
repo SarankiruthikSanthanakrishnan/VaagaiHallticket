@@ -7,7 +7,7 @@ const authRoutes = require('./authRoutes/authRoutes');
 
 app.use(
   cors({
-    origin: ['http://localhost:5173', 'https://vaagaihallticket.netlify.app/'],
+    origin: ['http://localhost:5173', 'https://vaagaihallticket.netlify.app'],
 
     credentials: true,
   })
