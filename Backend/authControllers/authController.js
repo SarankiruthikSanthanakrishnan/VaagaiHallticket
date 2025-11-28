@@ -24,9 +24,12 @@ const login = async (req, res) => {
     });
     res.cookie('token', token, {
       httpOnly: true,
-      secure: false,
+      secure: true,
+      sameSite: 'none',
+      path: '/',
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
+
     return res.status(200).json({
       message: `உள்நுழைகிறது வணக்கம் ${rows[0].name_english}`,
     });
@@ -53,7 +56,12 @@ const getuser = async (req, res) => {
 };
 
 const logout = async (req, res) => {
-  res.clearCookie('token');
+  res.clearCookie('token', {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none',
+    path: '/',
+  });
 
   return res.status(200).json({ message: 'Logged out successfully!' });
 };
@@ -71,9 +79,9 @@ const adminLogin = async (req, res) => {
   });
 
   res.cookie('admintoken', token, {
-    httpOnly: false, // <-- IMPORTANT
-    secure: false,
-    sameSite: 'lax',
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none',
     path: '/',
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });
