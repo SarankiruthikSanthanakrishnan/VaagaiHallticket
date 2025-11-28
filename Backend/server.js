@@ -5,6 +5,8 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./authRoutes/authRoutes');
 
+const cors = require('cors');
+
 app.use(
   cors({
     origin: [

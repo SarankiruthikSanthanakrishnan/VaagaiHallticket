@@ -27,6 +27,7 @@ const login = async (req, res) => {
       secure: true,
       sameSite: 'none',
       path: '/',
+      domain: 'vaagaihallticket.onrender.com',
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
@@ -61,6 +62,7 @@ const logout = async (req, res) => {
     secure: true,
     sameSite: 'none',
     path: '/',
+    domain: 'vaagaihallticket.onrender.com',
   });
 
   return res.status(200).json({ message: 'Logged out successfully!' });
