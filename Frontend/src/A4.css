@@ -20,12 +20,17 @@
 }
 
 .page {
-  width: 190mm; /* 210 - 20mm padding */
+  width: 190mm;
+  height: 277mm; /* A4 height (297mm - 20mm margin) */
+  min-height: 277mm;
+  max-height: 277mm;
   padding: 10mm;
   margin: auto;
   background: white;
   border: 1px solid black;
-  box-sizing: border-box; /* VERY IMPORTANT */
+  box-sizing: border-box;
+
+  overflow: hidden; /* Prevent spilling into next page */
 }
 
 /* Print adjustments */
