@@ -1,0 +1,79 @@
+/* Load ATM005 Tamil Font */
+@font-face {
+  font-family: 'ATM005';
+  src: url('/fonts/ATM005.ttf') format('truetype');
+}
+
+* {
+  font-family: 'ATM005', sans-serif !important;
+  font-size: 14px;
+}
+
+.card {
+  border: none;
+}
+
+/* A4 sheet sized page */
+@page {
+  size: A4;
+  margin: 10mm;
+}
+
+.page {
+  width: 190mm;
+  height: 277mm; /* A4 height (297mm - 20mm margin) */
+  min-height: 277mm;
+  max-height: 277mm;
+  padding: 10mm;
+  margin: auto;
+  background: white;
+  border: 1px solid black;
+  box-sizing: border-box;
+
+  overflow: hidden; /* Prevent spilling into next page */
+}
+
+/* Print adjustments */
+@media print {
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .page {
+    page-break-after: always;
+    border: none;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
+
+.print-btn {
+  position: fixed;
+  left: 20px;
+  bottom: 30px;
+  background-color: #0d6efd;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.print-btn:hover {
+  background-color: #084298;
+}
+
+@media print {
+  .print-btn {
+    display: none !important;
+  }
+}

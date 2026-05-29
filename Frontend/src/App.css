@@ -1,0 +1,6 @@
+:focus {
+  outline: none !important;
+}
+* {
+  caret-color: transparent !important;
+}
